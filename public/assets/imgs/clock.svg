@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="534.112" height="193.729" viewBox="0 0 534.112 193.729">
+  <defs>
+    <filter id="Caminho_2" x="0" y="0" width="534.112" height="193.729" filterUnits="userSpaceOnUse">
+      <feOffset dy="13" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="9.5" result="blur"/>
+      <feFlood flood-color="#072392" flood-opacity="0.769"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Caminho_2)">
+    <path id="Caminho_2-2" data-name="Caminho 2" d="M2756.684,1.465s27.176-1.666,46.247,44.97S2827.9,108.06,2827.9,108.06s6.827,28.431,45.593,29.147,256.981,0,256.981,0,33.27,7.4,44.817-29.147,24.316-61.625,24.316-61.625,18.836-44.134,33.851-44.97S2756.684,1.465,2756.684,1.465Z" transform="translate(-2728.18 14.41)" fill="#fff"/>
+  </g>
+</svg>
