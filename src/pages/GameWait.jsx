@@ -114,7 +114,7 @@ export default function Home() {
       setOpen(true)
       setTimeout(() => {
         window.location.href = "/"
-      }, 5000);
+      }, 3000);
     }
   }, [timer]);
 
@@ -135,7 +135,7 @@ export default function Home() {
         setGameWon(true)
         setTimeout(() => {
           window.location.href = "/"
-        }, 5000);
+        }, 3000);
       } else {
         setGameWon(false);
       }

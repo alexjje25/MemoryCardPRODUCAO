@@ -89,7 +89,14 @@ export default function Home() {
     readUserData()
   }, [])
 
+
+
+
   return (
+
+
+
+
       <CpfView>
         <Snackbar
         sx={{marginTop:'-50px'}}
@@ -108,7 +115,19 @@ export default function Home() {
         <Image src='/assets/fundoCpf.png' layout="fill" className='image' />
         <div className='main'>
         <p style={{fontSize:'40px'}} className='title'>POR FAVOR, INFORME SEU CPF</p>
-        <TextField type='number'  inputProps={{ maxLength: 11 }} sx={{background:'#e8e3e3', border: 'none', width:'100%', max:'4'  }} value={cpf} id="outlined-basic" onInput={(e: any) =>
+
+
+
+
+        <input type="text"
+        onInput={(e: any) =>
+          {
+            setCpf(Math.max(0, parseInt(e.target.value) ).toString().slice(0,11))
+          }}
+        style={{position:'absolute', marginTop:'-180px', height:'57px', border: '1px solid gray', borderRadius:'3px' ,background:'#e8e3e3', width:'61%', fontSize:'20px', textAlign:'center' }}       maxlength="11" onkeypress="if (!isNaN(number.fromCharCode(window.event.keyCode))) return true; else return false;" />
+
+        {/* <TextField type='number'
+        inputProps={{ maxLength: 11 }} sx={{background:'#e8e3e3', border: 'none', width:'100%', max:'4'  }} value={cpf} id="outlined-basic" onInput={(e: any) =>
         {
           setCpf(Math.max(0, parseInt(e.target.value) ).toString().slice(0,11))
         }} variant="outlined" />
@@ -118,8 +137,8 @@ export default function Home() {
             //   return <li key={index}>{value}</li>
             // })
           }
-        </ul>
-        <button style={{width: '88%', height:'130px'}} onClick={() => {
+        </ul> */}
+        <button style={{width: '88%', height:'130px', marginTop:'120px'}} onClick={() => {
           readUserData()
           verifyIfExist()
         }} className='btn'> <p style={{fontSize:'40px', fontWeight:'700'}}>COMEÇAR</p> </button>

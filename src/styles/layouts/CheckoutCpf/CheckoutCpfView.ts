@@ -71,6 +71,7 @@ export const CheckoutCpfView = styled.main`
     cursor: pointer;
     position: relative;
 
+
     color: #FFFFFF;
 
     :hover{
