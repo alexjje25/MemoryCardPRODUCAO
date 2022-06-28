@@ -41,6 +41,7 @@ export default function Home() {
   const [data, setData] = useState('')
 
   const [openSnackError, setOpenSnackError] = useState<boolean>(false)
+  const [openSnackError1, setOpenSnackError1] = useState<boolean>(false)
 
   const currentTime = `${new Date().getDate()}/${new Date().getMonth() + 1}`
 
@@ -53,6 +54,17 @@ export default function Home() {
     }
 
     setOpenSnackError(false)
+  }
+
+  const handleCloseSnack1 = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === 'clickaway') {
+      return
+    }
+
+    setOpenSnackError1(false)
   }
 
   function writeUserData(cpf) {
@@ -71,7 +83,9 @@ export default function Home() {
   }
 
   async function verifyIfExist() {
-    // console.log(data[cpf].created_at, currentTime)
+    if (cpf === ""){
+      setOpenSnackError1(true)
+    }else
     if (data[cpf]) {
       if (data[cpf].created_at === currentTime) {
         setOpenSnackError(true)
@@ -79,23 +93,20 @@ export default function Home() {
         writeUserData(cpf)
         router.push('/GameWait')
       }
+
+
     } else {
       writeUserData(cpf)
       router.push('/GameWait')
     }
   }
 
+
   useEffect(() => {
     readUserData()
   }, [])
 
-
-
-
   return (
-
-
-
 
       <CpfView>
         <Snackbar
@@ -112,6 +123,22 @@ export default function Home() {
             Este CPF já participou da Ação, volte amanha!
           </Alert>
         </Snackbar>
+
+        <Snackbar
+        sx={{marginTop:'-50px'}}
+          open={openSnackError1}
+          autoHideDuration={4000}
+          onClose={handleCloseSnack1}
+        >
+          <Alert
+            onClose={handleCloseSnack1}
+            severity="error"
+            sx={{ width: '100%' }}
+          >
+            Preencha seu CPF!
+          </Alert>
+        </Snackbar>
+
         <Image src='/assets/fundoCpf.png' layout="fill" className='image' />
         <div className='main'>
         <p style={{fontSize:'40px'}} className='title'>POR FAVOR, INFORME SEU CPF</p>

@@ -61,7 +61,7 @@ export default function Home() {
     const [timer, setTimer] = useState('00:00');
     const [timer2, setTimer2] = useState('00:00');
 
-    const [startGameCount, setStartGameCount] = useState(5)
+    const [startGameCount, setStartGameCount] = useState(3)
 
     const getTimeRemaining = (e) => {
         const total = Date.parse(e) - Date.parse(new Date());
@@ -97,7 +97,7 @@ export default function Home() {
     const getDeadTime = () => {
         const deadline = new Date();
 
-        deadline.setSeconds(deadline.getSeconds() + 50);
+        deadline.setSeconds(deadline.getSeconds() + 40);
         return deadline;
     }
 
@@ -114,7 +114,7 @@ export default function Home() {
       setOpen(true)
       setTimeout(() => {
         window.location.href = "/"
-      }, 3000);
+      }, 300000);
     }
   }, [timer]);
 
@@ -135,7 +135,7 @@ export default function Home() {
         setGameWon(true)
         setTimeout(() => {
           window.location.href = "/"
-        }, 3000);
+        }, 30000);
       } else {
         setGameWon(false);
       }
@@ -234,6 +234,8 @@ export default function Home() {
         <h1 style={{color:'white', fontSize:'70px', fontFamily: 'Khula'}}>{startGameCount}</h1>
       </Modal>
 
+
+
       <Modal style={{border: 'none', outline: 0, display: 'flex', justifyContent:'center'}} BackdropProps={{ style: {backgroundColor: "hsla(160,90%,220%,0.7)", border: 'none', outline:'0'}}}
         open={gameWon}
         onClose={handleClose}
@@ -248,9 +250,10 @@ export default function Home() {
         </div>
       </Modal>
 
-      <Modal style={{border: 'none', outline: 0, display: 'flex', justifyContent:'center'}} BackdropProps={{ style: {backgroundColor: "hsla(160,90%,220%,0.7)", border: 'none', outline:'0'}}}
+      <Modal style={{border: 'none', outline: 0, display: 'flex', justifyContent:'center', }} BackdropProps={{ style: {backgroundColor: "hsla(160,90%,220%,0.7)", border: 'none', outline:'0'}}}
+
         open={open}
-        onClose={handleClose}
+
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
