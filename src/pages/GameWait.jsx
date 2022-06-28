@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Card from '../components/card/Card'
+import Logo from './imageModal.png'
 
 import {
   GameWaitView,
@@ -57,10 +58,10 @@ export default function Home() {
     const Ref = useRef(null);
 
     // The state for our timer
-    const [timer, setTimer] = useState('00:00:00');
-    const [timer2, setTimer2] = useState('00:00:00');
+    const [timer, setTimer] = useState('00:00');
+    const [timer2, setTimer2] = useState('00:00');
 
-    const [startGameCount, setStartGameCount] = useState(3)
+    const [startGameCount, setStartGameCount] = useState(5)
 
     const getTimeRemaining = (e) => {
         const total = Date.parse(e) - Date.parse(new Date());
@@ -78,14 +79,13 @@ export default function Home() {
         if (total >= 0) {
 
             setTimer(
-                (minutes > 9 ? minutes : '0' + minutes) + ':'
-                + (seconds > 9 ? seconds : '0' + seconds)
+              (seconds > 9 ? seconds : '0' + seconds)
             )
         }
     }
 
     const clearTimer = (e) => {
-        setTimer('00:40');
+        setTimer('40');
 
         if (Ref.current) clearInterval(Ref.current);
         const id = setInterval(() => {
@@ -97,7 +97,7 @@ export default function Home() {
     const getDeadTime = () => {
         const deadline = new Date();
 
-        deadline.setSeconds(deadline.getSeconds() + 40);
+        deadline.setSeconds(deadline.getSeconds() + 50);
         return deadline;
     }
 
@@ -110,9 +110,11 @@ export default function Home() {
   }, [startGameCount]);
 
   useEffect(() => {
-    if (timer === '00:00' ){
+    if (timer === '00' ){
       setOpen(true)
-      window.location.href = "/"
+      setTimeout(() => {
+        window.location.href = "/"
+      }, 5000);
     }
   }, [timer]);
 
@@ -131,9 +133,10 @@ export default function Home() {
     () => {
       if (matchedPairs === cards.length / 2 && cards.length != 0) {
         setGameWon(true)
-        window.location.href = "/"
-
-      }else{
+        setTimeout(() => {
+          window.location.href = "/"
+        }, 5000);
+      } else {
         setGameWon(false);
       }
     },
@@ -221,14 +224,14 @@ export default function Home() {
           </CardsContainer>
         </Container>
 
-        {/* <Button onClick={handleOpen}>Open modal</Button> */}
+         {/* <Button onClick={handleOpen}>Open modal</Button>  */}
       <Modal style={{border: 'none', outline: 'transparent', display: 'flex', justifyContent:'center'}}
         open={startGameCount>=0}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <h1 style={{color:'white', fontSize:'50px', fontFamily: 'Khula'}}>{startGameCount}</h1>
+        <h1 style={{color:'white', fontSize:'70px', fontFamily: 'Khula'}}>{startGameCount}</h1>
       </Modal>
 
       <Modal style={{border: 'none', outline: 0, display: 'flex', justifyContent:'center'}} BackdropProps={{ style: {backgroundColor: "hsla(160,90%,220%,0.7)", border: 'none', outline:'0'}}}
@@ -239,9 +242,9 @@ export default function Home() {
       >
         <div style={{ outline: 0, display: 'flex', justifyContent:'center', alignItems:'center', flexDirection: 'column', width:'100px' }} >
         <p>{gameWon}</p>
-        <h1 style={{color:'#001990', fontSize:'35px', fontWeight: '800', marginLeft:'0', }}>PARABÉNS!</h1>
-        <p style={{color:'#001990', fontSize:'15px', fontWeight: '800', marginLeft:'-50px', whiteSpace: 'nowrap', marginTop:'-20px' }}>VOCE É UM ESPECIALISTA</p>
-        <Image src='/assets/imgs/logo2.png' width={200} height={150}/>
+        <h1 style={{color:'#001990', fontSize:'100px', fontWeight: '600', marginLeft:'0', textAlign:'center', fontFamily:'Poppins' }}>PARABÉNS!</h1>
+        <p style={{color:'#001990', fontSize:'50px', fontWeight: '500', marginLeft:'-50px', whiteSpace: 'nowrap', marginTop:'-20px',fontFamily:'Poppins', marginTop:'-70px' }}>VOCE É UM ESPECIALISTA</p>
+        <img src='/assets/logo.png' width={600} height={200}/>
         </div>
       </Modal>
 
@@ -253,9 +256,9 @@ export default function Home() {
       >
         <div style={{ outline: 0, display: 'flex', justifyContent:'center', alignItems:'center', flexDirection: 'column', width:'100px' }} >
         <p>{gameWon}</p>
-        <h1 style={{color:'#001990', fontSize:'35px', fontWeight: '800', marginLeft:'0', }}>TEMPO ESGOTADO!</h1>
-        <p style={{color:'#001990', fontSize:'15px', fontWeight: '800', marginLeft:'-50px', whiteSpace: 'nowrap', marginTop:'-20px' }}> VOLTE AMANHÃ </p>
-        <Image src='/assets/imgs/logo2.png' width={200} height={150}/>
+        <h1 style={{color:'#001990', fontSize:'100px', fontWeight: '600', marginLeft:'0', textAlign:'center', fontFamily:'Poppins' }}>TEMPO ESGOTADO!</h1>
+       <p style={{color:'#001990', fontSize:'50px', fontWeight: '500', marginLeft:'-50px', whiteSpace: 'nowrap', marginTop:'-20px',fontFamily:'Poppins', marginTop:'-70px' }}> VOLTE AMANHÃ </p>
+
         </div>
       </Modal>
 

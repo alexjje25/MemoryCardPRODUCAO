@@ -32,8 +32,8 @@ export const CardView = styled.div<{hover: boolean}>`
 
 
 export const Wrapper = styled.div`
-  width: 100%;
   height: 100%;
+  min-width: 100%;
   position: relative;
   perspective: 1000px;
   .front.flipped {
@@ -53,6 +53,10 @@ const sharedStyles = css`
   backface-visibility: hidden;
   cursor: pointer;
   transform-style: preserve-3d;
+  @media only screen and (max-width: 1920px) {
+    width: 20vh;
+    height: 20vh;
+  }
 `;
 
 export const FrontImg =
